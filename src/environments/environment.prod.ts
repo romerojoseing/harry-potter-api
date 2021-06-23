@@ -1,5 +1,5 @@
 /* ---------- Connection with API ---------- */
 export const environment = {
-  production: false,
+  production: true,
   urlAddress: 'http://hp-api.herokuapp.com/api'
 };
