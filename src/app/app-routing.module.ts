@@ -7,11 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 /* ---------- Components ---------- */
 import { BaseComponent } from './components/layout/base/base.component';
 import { ErrorsComponent } from './components/errors/errors.component';
-import { HomeComponent } from './components/pages/home/home.component';
-import { CharactersComponent } from './components/pages/characters/characters.component';
-import { StudentsComponent } from './components/pages/students/students.component';
-import { StaffComponent } from './components/pages/staff/staff.component';
-import { HouseComponent } from './components/pages/house/house.component';
 import { DocsComponent } from "./components/pages/docs/docs.component";
 
 const routes: Routes = [
@@ -21,23 +16,23 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeComponent
+        loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'characters',
-        component: CharactersComponent
+        loadChildren: () => import('./components/pages/characters/characters.module').then(m => m.CharactersModule)
       },
       {
         path: 'students',
-        component: StudentsComponent
+        loadChildren: () => import('./components/pages/students/students.module').then(m => m.StudentsModule)
       },
       {
         path: 'staff',
-        component: StaffComponent
+        loadChildren: () => import('./components/pages/staff/staff.module').then(m => m.StaffModule)
       },
       {
-        path: 'house',
-        component: HouseComponent
+        path: 'requests',
+        loadChildren: () => import('./components/pages/requests/requests.module').then(m => m.RequestsModule)
       },
       {
         path: 'docs',

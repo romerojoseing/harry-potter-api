@@ -1,1 +1,41 @@
-<p>staff works!</p>
+<div class="container">
+  <div class="px-4 py-5 mb-5 text-center">
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Lista de profesores disponibles.</p>
+    </div>
+
+    <div class="mt-5">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Patronus</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Casa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let character of staff">
+            <td>
+              <img class="rounded " src="{{character.image}}" alt="" height="100">
+            </td>
+            <th scope="row">{{character.name}}</th>
+            <td>
+              <span *ngIf="character.patronus === ''">Patronus no conocido</span>
+              <span *ngIf="character.patronus != ''">{{character.patronus}}</span>
+            </td>
+            <td>{{this.year - character.yearOfBirth}}</td>
+            <td>
+              <span class="badge bg-danger" *ngIf="character.house === 'Gryffindor'">{{character.house}}</span>
+              <span class="badge bg-warning " *ngIf="character.house === 'Hufflepuff'">{{character.house}}</span>
+              <span class="badge bg-primary" *ngIf="character.house === 'Ravenclaw'">{{character.house}}</span>
+              <span class="badge bg-success" *ngIf="character.house === 'Slytherin'">{{character.house}}</span>
+              <span class="badge bg-secondary" *ngIf="character.house === ''">No pertenece</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

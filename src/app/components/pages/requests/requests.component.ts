@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from "src/app/services/app.service";
 
 @Component({
-  selector: 'app-staff',
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.scss']
+  selector: 'app-requests',
+  templateUrl: './requests.component.html',
+  styleUrls: ['./requests.component.scss']
 })
-export class StaffComponent implements OnInit {
+export class RequestsComponent implements OnInit {
 
-  staff = null;
+  requests = null;
 
   today = new Date();
   year = this.today.getFullYear();
@@ -23,8 +23,7 @@ export class StaffComponent implements OnInit {
   }
 
   loadData(){
-    this.appService.getStaff().subscribe((response) => {
-      this.staff = response;
-    })
+    this.requests = JSON.parse(localStorage.getItem('Solicitudes'));
   }
+
 }

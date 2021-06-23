@@ -1,1 +1,87 @@
-<p>students works!</p>
+<div class="container">
+  <div class="px-4 py-5 mb-5 text-center">
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Lista de estudiantes disponibles.</p>
+    </div>
+
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Agregar una solicitud +
+      </button>
+    </div>
+
+    <div class="mt-5">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Imagen</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Patronus</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Casa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let character of students">
+            <td>
+              <img class="rounded " src="{{character.image}}" alt="" height="100">
+            </td>
+            <th scope="row">{{character.name}}</th>
+            <td>
+              <span *ngIf="character.patronus === ''">Patronus no conocido</span>
+              <span *ngIf="character.patronus != ''">{{character.patronus}}</span>
+            </td>
+            <td>{{this.year - character.yearOfBirth}}</td>
+            <td>
+              <span class="badge bg-danger" *ngIf="character.house === 'Gryffindor'">{{character.house}}</span>
+              <span class="badge bg-warning " *ngIf="character.house === 'Hufflepuff'">{{character.house}}</span>
+              <span class="badge bg-primary" *ngIf="character.house === 'Ravenclaw'">{{character.house}}</span>
+              <span class="badge bg-success" *ngIf="character.house === 'Slytherin'">{{character.house}}</span>
+              <span class="badge bg-secondary" *ngIf="character.house === ''">No pertenece</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar una solicitud</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="solicitudForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" required [ngClass]="{'form-control' : true, 'is-valid' : name.touched && name.valid, 'is-invalid' : name.invalid && (name.dirty || name.touched) && name.invalid}" formControlName="name" >
+          </div>
+          <div class="mb-3">
+            <label for="patronus" class="form-label">Patronus</label>
+            <input type="text" required [ngClass]="{'form-control' : true, 'is-valid' : patronus.touched && patronus.valid, 'is-invalid' : patronus.invalid && (patronus.dirty || patronus.touched) && patronus.invalid}" formControlName="patronus" >
+          </div>
+          <div class="mb-3">
+            <label for="age" class="form-label">Edad</label>
+            <input type="number" required [ngClass]="{'form-control' : true, 'is-valid' : age.touched && age.valid, 'is-invalid' : age.invalid && (age.dirty || age.touched) && age.invalid}" formControlName="age" >
+          </div>
+          <div class="mb-3">
+            <label for="house" class="form-label">Casa de hechiceria</label>
+            <select [ngClass]="{'form-select' : true, 'is-valid' : house.touched && house.valid, 'is-invalid' : house.invalid && (house.dirty || house.touched) && house.invalid}" formControlName="house" >
+              <option [value]="" [disabled]="true">Seleccionar una casa</option> 
+              <option *ngFor="let house of houses" [value]="house.name">{{house.name}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" [disabled]="this.solicitudForm.invalid" (click)="enviarSolicitud()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

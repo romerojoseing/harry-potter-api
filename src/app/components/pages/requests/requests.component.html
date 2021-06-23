@@ -1,34 +1,27 @@
 <div class="container">
   <div class="px-4 py-5 mb-5 text-center">
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Selecciona la casa que quieres visitar.</p>
-      <select class="form-select" [(ngModel)]="this.house" (change)="selectHouse(this.house)">
-        <option *ngFor="let house of houses" [value]="house.name">{{house.name}}</option>
-      </select>
+      <p class="lead mb-4">Lista de solicitudes recibidas.</p>
     </div>
 
     <div class="mt-5">
       <table class="table table-hover table-bordered">
         <thead>
           <tr>
-            <th scope="col">Imagen</th>
             <th scope="col">Nombre</th>
             <th scope="col">Patronus</th>
             <th scope="col">Edad</th>
             <th scope="col">Casa</th>
           </tr>
         </thead>
-        <tbody *ngIf="characters != null">
-          <tr *ngFor="let character of characters">
-            <td>
-              <img class="rounded " src="{{character.image}}" alt="" height="100">
-            </td>
+        <tbody *ngIf="requests !== null">
+          <tr *ngFor="let character of requests">
             <th scope="row">{{character.name}}</th>
             <td>
               <span *ngIf="character.patronus === ''">Patronus no conocido</span>
               <span *ngIf="character.patronus != ''">{{character.patronus}}</span>
             </td>
-            <td>{{this.year - character.yearOfBirth}}</td>
+            <td>{{character.age}}</td>
             <td>
               <span class="badge bg-danger" *ngIf="character.house === 'Gryffindor'">{{character.house}}</span>
               <span class="badge bg-warning " *ngIf="character.house === 'Hufflepuff'">{{character.house}}</span>
@@ -38,10 +31,10 @@
             </td>
           </tr>
         </tbody>
-        <tbody *ngIf="characters === null">
+        <tbody *ngIf="requests === null">
           <tr>
             <td class="text-center" colspan="6">
-              <p class="my-5">Debes escoger una opcion para habilitar los datos de la tabla</p>
+              <p class="my-5">No hay solicitudes recibidas actualmente</p>
             </td>
           </tr>
         </tbody>
