@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AppService } from "src/app/services/app.service";
 
 @Component({
@@ -9,6 +8,11 @@ import { AppService } from "src/app/services/app.service";
 })
 export class CharactersComponent implements OnInit {
 
+  /* ---------- Declare vars ---------- */
+  house;
+  characters = null;
+  today = new Date();
+  year = this.today.getFullYear();
   houses: any[] = [
     {name: 'Visitar todas'},
     {name: 'Gryffindor'},
@@ -17,12 +21,6 @@ export class CharactersComponent implements OnInit {
     {name: 'Slytherin'}
   ];
 
-  house;
-  characters = null;
-
-  today = new Date();
-  year = this.today.getFullYear();
-
   constructor(
     private appService: AppService
   ) { }
@@ -30,11 +28,13 @@ export class CharactersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /* ---------- Select house function  ---------- */
   selectHouse(value){
     this.house = value;
     this.loadData();
   }
 
+  /* ---------- Load data function  ---------- */
   loadData(){
     if (this.house === 'Visitar todas') {
       this.appService.getCharacters().subscribe((response) => {

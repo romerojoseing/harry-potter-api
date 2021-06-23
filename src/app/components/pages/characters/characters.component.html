@@ -1,5 +1,8 @@
+<!---------- Characters section ---------->
 <div class="container">
   <div class="px-4 py-5 mb-5 text-center">
+
+    <!---------- Select House ---------->
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Selecciona la casa que quieres visitar.</p>
       <select class="form-select" [(ngModel)]="this.house" (change)="selectHouse(this.house)">
@@ -7,6 +10,7 @@
       </select>
     </div>
 
+    <!---------- Table section ---------->
     <div class="mt-5">
       <table class="table table-hover table-bordered">
         <thead>

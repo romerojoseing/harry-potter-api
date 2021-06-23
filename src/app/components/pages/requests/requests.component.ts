@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AppService } from "src/app/services/app.service";
 
 @Component({
@@ -9,8 +8,8 @@ import { AppService } from "src/app/services/app.service";
 })
 export class RequestsComponent implements OnInit {
 
+  /* ---------- Declare vars ---------- */
   requests = null;
-
   today = new Date();
   year = this.today.getFullYear();
 
@@ -22,6 +21,7 @@ export class RequestsComponent implements OnInit {
     this.loadData();
   }
 
+  /* ---------- Load data function  ---------- */
   loadData(){
     this.requests = JSON.parse(localStorage.getItem('Solicitudes'));
   }
