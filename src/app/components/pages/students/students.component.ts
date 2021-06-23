@@ -85,7 +85,7 @@ export class StudentsComponent implements OnInit {
       });
       Toast.fire({
         icon: 'success',
-        title: 'Solicitud recibida correctamente'
+        title: 'Solicitud recibida'
       });
     }else{
       /* ---------- Alerts  ---------- */
