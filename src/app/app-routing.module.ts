@@ -7,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 /* ---------- Components ---------- */
 import { BaseComponent } from './components/layout/base/base.component';
 import { ErrorsComponent } from './components/errors/errors.component';
-import { DocsComponent } from "./components/pages/docs/docs.component";
 
 const routes: Routes = [
   {
@@ -33,10 +32,6 @@ const routes: Routes = [
       {
         path: 'requests',
         loadChildren: () => import('./components/pages/requests/requests.module').then(m => m.RequestsModule)
-      },
-      {
-        path: 'docs',
-        component: DocsComponent
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]
